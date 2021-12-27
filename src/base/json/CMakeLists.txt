@@ -1,0 +1,34 @@
+
+cmake_minimum_required(VERSION 3.12)
+
+include(../../../pico-tflmicro/pico_sdk_import.cmake)
+
+project(json C CXX ASM)
+set(CMAKE_C_STANDARD 11)
+set(CMAKE_CXX_STANDARD 11)
+
+add_library(libjson "")
+
+target_include_directories(libjson
+  PRIVATE
+  ${CMAKE_CURRENT_LIST_DIR}/.
+)
+
+set_target_properties(
+  libjson
+  PROPERTIES
+  COMPILE_FLAGS -fno-rtti
+  COMPILE_FLAGS -fno-exceptions
+  COMPILE_FLAGS -fno-threadsafe-statics
+  COMPILE_FLAGS -nostdlib
+)
+
+target_sources(libjson
+  PRIVATE
+  ${CMAKE_CURRENT_LIST_DIR}/json.h
+)
+
+target_link_libraries(
+  libjson
+  pico_stdlib
+)
