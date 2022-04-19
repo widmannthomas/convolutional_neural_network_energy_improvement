@@ -42,3 +42,68 @@
 - Zeitplan
    - Wie detailliert muss der Plan sein?
        - Reichen Meilensteine aus?
+
+
+## 2022-01-27
+
+- removed gif and bitmap from dataset because these formats don't work in grayscale mode.
+
+## 2022-01-30
+
+- fixed https://github.com/BenWhetton/keras-surgeon/pull/62
+
+
+
+
+
+
+
+## 2022-01-31
+
+**Introduction:**
+- [ ] Warum hilft pruning bei batteriebetriebenen Applikationen? Besser beschreiben, dass die aktive CPU Zeit verkleinert werden kann.
+
+**Research Questions:**
+- [x] Hypothesis aufstellen (Unstructured pruning wird keine Verbesserung erwartet.) Begründung - spezial HW wird benötigt.
+
+**Network**
+- [x] Keine Quantisierung durchführen.
+- [x] LeNet mit fashion mnist structured / unstructured pruning.
+- [x] Kleinerer Datensatz MNIST oder Fashion MNIST
+- [x] Modell: LeNet
+
+**Referenzen:**
+- [x] Vollständigkeit Überprüfen (5 ist nicht vollständig)
+
+**MISC**
+- [ ] Zitierregeln (Zitat immer vor dem Satzzeichen)
+
+### Info
+- Fashion mnist without quantization works. LeNet does fit!
+
+
+## 2022-02-02
+- Lenet5 passt auf den controller
+- structured pruning geht bei cnn und dense
+- apoz geht bei cnn und dense
+
+
+
+
+
+
+
+
+
+## 2022-04-01
+### Open Questions:
+- Welche Zeitform ist zu verwenden?
+- Wie soll unstructured_pruning (speedup) eingebunden werden?
+    - Discussion?
+    - third Experiment ?
+
+
+## 2022-04-06 Briefing
+
+- Cite figures: Quelle angeben. Siehe Folien
+- Forschungsfrage: Wie wirkt sich bla bla aus. Nicht: Hat bla bla einen Einfluss?    Darf nicht mit Ja/Nein beantwortet werden dürfen.

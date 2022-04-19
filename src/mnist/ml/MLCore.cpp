@@ -5,10 +5,14 @@
 
 #include "../base/log/log.h"
 
+#define PIN_TRIGGER 22
+
 template<class T>
 MLCore<T>::MLCore(IMLCoreReporter<T>* pReporter)
     : m_pReporter(pReporter)
 {
+    gpio_init(PIN_TRIGGER);
+    gpio_set_dir(PIN_TRIGGER, GPIO_OUT);
 }
 
 template<class T>
@@ -40,6 +44,10 @@ bool MLCore<T>::initModel(const unsigned char *cpModel)
 
     LOG_DEBUG << "Input type: " << std::to_string(int(m_pInput->type)) << "\n";
     LOG_DEBUG << "Input dims size: " << std::to_string(int(m_pInput->dims->size)) << "\n";
+    for(short i = 0; i < m_pInput->dims->size; i++)
+    {
+        LOG_DEBUG << "Input dim (" << std::to_string(int(i)) << ") = " << std::to_string(int(m_pInput->dims->data[i])) << "\n";
+    }
 
     /*
     printf("Input dims: (");
@@ -52,6 +60,10 @@ bool MLCore<T>::initModel(const unsigned char *cpModel)
 
     LOG_DEBUG << "Output type: " << std::to_string(int(m_pOutput->type)) << "\n";
     LOG_DEBUG << "Output dims size: " << std::to_string(int(m_pOutput->dims->size)) << "\n";
+    for(short i = 0; i < m_pOutput->dims->size; i++)
+    {
+        LOG_DEBUG << "Output dim (" << std::to_string(int(i)) << ") = " << std::to_string(int(m_pOutput->dims->data[i])) << "\n";
+    }
     
     /*
     printf("Output dims: (");
@@ -71,11 +83,16 @@ bool MLCore<T>::classify(MLCoreExecutionMetaData<T>& rMetaData)
     assert(rMetaData.vecProbabilities.size() == 0);
 
     const absolute_time_t coTimeStart = get_absolute_time();
+
+    gpio_put(PIN_TRIGGER, 1);
     const TfLiteStatus coStatus = m_pInterpreter->Invoke();
     if(coStatus != kTfLiteOk)
     {
+        gpio_put(PIN_TRIGGER, 0);
         return false;
     }
+
+    gpio_put(PIN_TRIGGER, 0);
 
     const absolute_time_t coTimeStop = get_absolute_time();
     rMetaData.unTime_us = absolute_time_diff_us(coTimeStart, coTimeStop);

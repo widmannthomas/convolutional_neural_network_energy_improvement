@@ -26,6 +26,7 @@ limitations under the License.
 int main(int argc, char *argv[])
 {
   stdio_init_all();
+  stdio_uart_init_full(uart0, 115200, 12, 13);
 
   CoreStateMachine oCSM;
 

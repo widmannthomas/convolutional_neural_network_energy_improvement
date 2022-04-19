@@ -82,5 +82,11 @@ target_link_libraries(
 )
 
 pico_add_extra_outputs(mnist)
-pico_enable_stdio_usb(mnist 1)
-pico_enable_stdio_uart(mnist 0)
+
+# USB:
+#pico_enable_stdio_usb(mnist 1)
+#pico_enable_stdio_uart(mnist 0)
+
+# UART:
+pico_enable_stdio_usb(mnist 0)
+pico_enable_stdio_uart(mnist 1)

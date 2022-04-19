@@ -29,7 +29,7 @@ private:
     tflite::MicroErrorReporter m_oErrorReporter;
     TfLiteTensor* m_pInput = nullptr;
     TfLiteTensor* m_pOutput = nullptr;
-    unsigned int m_unTensorArenaSize = 120000;
+    unsigned int m_unTensorArenaSize = 50000;
     uint8_t* m_pTensorArena = nullptr;
 };
 

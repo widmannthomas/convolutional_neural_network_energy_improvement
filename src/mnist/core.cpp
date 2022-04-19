@@ -114,6 +114,12 @@ Transition CoreStateMachine::stateWaitForData()
     m_oCommunicationHandler.waitForData(m_oCommand, pInput->data.uint8);
     LOG_INFO << "Received data\n";
 
+    /*
+    for(int i = 0; i < 3; i++) {
+        LOG_INFO << std::to_string(float(pInput->data.f[i]));
+    }
+    */
+
     return Transition::Execute;
 }
 
