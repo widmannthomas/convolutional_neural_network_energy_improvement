@@ -39,7 +39,11 @@ cd build
 cmake ..
 ```
 
-
+3. build sub-modules
+```bash
+cd src/mnist
+make
+```
 
 ### Experiment setup
 The following images are showing the experiment setup using the Raspberry Pi Pico.

@@ -4,6 +4,7 @@ This part of the framework provides a test environment written in C++ using the 
 ## Communication
 The communication uses the UART interface and is based on a simple client-server principle. The MCU forms the _server_ and the external device, controlling the experiment forms the _client_ (_Host_).
 The following image shows a sequence diagram that describes the communication between the _client_ and the _server_.
+
 <img src="img/communication.png">
 
 ## Compilation
