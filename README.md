@@ -28,21 +28,47 @@ The framework provides a [C++ environment](https://github.com/widmannthomas/conv
 ### Compilation
 The project uses _cmake_ as build environment. 
 
-1) create a build directory
+**Preparation:**
+Before you start building this project, make sure you have the required tool chain installed.
+```bash
+sudo apt install cmake gcc-arm-none-eabi libnewlib-arm-none-eabi libstdc++-arm-none-eabi-newlib
+```
+Furthermore, you have to clone the pico-sdk repository and set the ```PICO_SDK_PATH```environemt variable properly.
+A good step-by-step manual can be found here: [PICO-SDK](https://github.com/raspberrypi/pico-sdk)
+
+**Build:**
+1) pull this project
+```bash
+git clone https://github.com/widmannthomas/convolutional_neural_network_energy_improvement.git
+cd convolutional_neural_network_energy_improvement
+```
+
+2) init git submodules
+```bash
+git submodule init
+git submodule update
+```
+
+3) create a build directory
 ```bash
 mkdir build
 cd build
 ```
 
-2) run cmake
+4) run cmake
 ```bash
 cmake ..
 ```
 
-3. build sub-modules
+5) build sub-modules
 ```bash
 cd src/mnist
 make
+```
+
+6) Copy binary to Raspberry Pi Pico Volume
+```bash
+cp mnist.uf2 <RPP TARGET>
 ```
 
 ### Experiment setup
